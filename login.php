@@ -32,30 +32,26 @@ if (isset($_POST['login'])) {
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    /* Custom CSS for animations */
-/* Global Body Background */
+
 body {
    background: linear-gradient(135deg, #00bcd4, #a8e063);
- /* Minty Fresh (Teal and Light Blue) Gradient */
+
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     font-family: 'Roboto', sans-serif;
     color: #333;
 }
 
-/* Animation for Gradient Background */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Center the Login Form */
 .container {
     margin-top: 100px;
 }
 
-/* Card Styling */
 .card {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -63,7 +59,6 @@ body {
     padding: 40px 30px;
 }
 
-/* Card Heading */
 .card h1 {
     color: #0072ff;
     font-size: 2.5rem;
@@ -71,7 +66,6 @@ body {
     font-weight: bold;
 }
 
-/* Login Form Styling */
 .form-control {
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -81,14 +75,13 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Input Focus Style */
 .form-control:focus {
     border-color: #0072ff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     background-color: #e6f7ff;
 }
 
-/* Primary Button Styling */
+
 .btn-primary {
     background-color: #ff4081;
     border: none;
@@ -103,7 +96,7 @@ body {
     background-color: #ff3366;
 }
 
-/* Error Message Styling */
+
 .alert-danger {
     background-color: #ff4444;
     color: white;
@@ -114,7 +107,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* Links Styling */
+
 a {
     color: #0072ff;
     text-decoration: none;
@@ -168,14 +161,14 @@ a:hover {
     </div>
 
     <script>
-        // Add animation on form submission
+       
         const loginForm = document.getElementById('loginForm');
         const errorAlert = document.querySelector('.alert-danger');
 
         loginForm.addEventListener('submit', function (e) {
             if (errorAlert) {
                 errorAlert.classList.remove('shake');
-                void errorAlert.offsetWidth; // Trigger reflow to restart animation
+                void errorAlert.offsetWidth; 
                 errorAlert.classList.add('shake');
             }
         });
