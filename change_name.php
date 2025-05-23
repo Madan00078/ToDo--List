@@ -10,7 +10,6 @@ $user_id = $_SESSION['user_id'];
 $success = '';
 $error = '';
 
-// Fetch current name
 $stmt = $conn->prepare("SELECT username FROM users WHERE id = :id");
 $stmt->bindParam(':id', $user_id);
 $stmt->execute();
