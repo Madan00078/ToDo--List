@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_task'])) {
     $due_date = $_POST['due_date'] ?? '';
     $submitted_task_id = $_POST['task_id'] ?? '';
 
-    // Validation
     if (empty($title)) {
         $errors[] = 'Title is required';
     }
@@ -49,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_task'])) {
         $errors[] = 'Invalid task ID';
     }
 
-    // If no errors and task exists, update the task in the database
     if (empty($errors) && $task) {
         try {
             $stmt = $conn->prepare("
