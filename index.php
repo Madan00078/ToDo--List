@@ -6,17 +6,16 @@ if (!isset($_SESSION['user_id'])) {
 }
 require 'db.php';
 
-// Get user ID from session
+
 $user_id = $_SESSION['user_id'];
 
-// Fetch user name
+
 $userStmt = $conn->prepare("SELECT username FROM users WHERE id = :id");
 $userStmt->bindParam(':id', $user_id);
 $userStmt->execute();
 $user = $userStmt->fetch(PDO::FETCH_ASSOC);
 $username = $user ? $user['username'] : 'User';
 
-// Fetch tasks
 $stmt = $conn->prepare("
     SELECT * FROM tasks 
     WHERE user_id = :user_id 
@@ -29,7 +28,6 @@ $stmt->bindParam(':user_id', $user_id);
 $stmt->execute();
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Group tasks by due_date
 $groupedTasks = [];
 foreach ($tasks as $task) {
     $dateKey = $task['due_date'] ? date('Y-m-d', strtotime($task['due_date'])) : 'No Due Date';
