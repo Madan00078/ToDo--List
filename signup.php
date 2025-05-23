@@ -9,14 +9,13 @@ if (isset($_POST['signup'])) {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    // Check if username already exists
     $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username");
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     if ($stmt->fetch(PDO::FETCH_ASSOC)) {
         $error = "Username already exists!";
     } else {
-        // Insert new user
+ 
         $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
