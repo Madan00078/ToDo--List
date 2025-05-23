@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject = trim($_POST['subject'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
-    // Validation
     if (empty($name)) {
         $errors[] = 'Name is required';
     }
@@ -25,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Message is required';
     }
 
-    // If no errors, save to database
     if (empty($errors)) {
         try {
             $stmt = $conn->prepare("
@@ -60,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Contact Us</h1>
         <div class="flex justify-between mb-6">
             <a href="index.php" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">Back to Login </a>
-            <!-- Removed logout link as login is not required -->
+      
         </div>
 
         <?php if (!empty($errors)): ?>
