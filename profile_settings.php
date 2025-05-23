@@ -11,15 +11,12 @@ $user_id = $_SESSION['user_id'];
 $errors = [];
 $success_name = '';
 $success_password = '';
-
-// Fetch current user info
 $stmt = $conn->prepare("SELECT username, password FROM users WHERE id = :id");
 $stmt->bindParam(':id', $user_id);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 $current_username = $user['username'] ?? '';
 
-// Handle username update
 if (isset($_POST['update_name'])) {
     $new_username = trim($_POST['new_username']);
 
@@ -37,7 +34,6 @@ if (isset($_POST['update_name'])) {
     }
 }
 
-// Handle password update
 if (isset($_POST['update_password'])) {
     $current = $_POST['current_password'];
     $new = $_POST['new_password'];
@@ -99,14 +95,10 @@ if (isset($_POST['update_password'])) {
         <?php if ($success_password): ?>
             <p class="mb-4 text-green-600"><?= htmlspecialchars($success_password) ?></p>
         <?php endif; ?>
-
-        <!-- Buttons to choose form -->
         <div class="mb-6 text-center">
             <button onclick="toggleForm('username')" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition mb-2 w-full">Change Username</button>
             <button onclick="toggleForm('password')" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition w-full">Change Password</button>
         </div>
-
-        <!-- Change Username Form (Initially Hidden) -->
         <form method="POST" id="usernameForm" style="display: none;" class="mb-6">
             <h3 class="font-semibold text-gray-700 mb-2">Change Username</h3>
             <div class="mb-4">
@@ -120,7 +112,6 @@ if (isset($_POST['update_password'])) {
             <button type="submit" name="update_name" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Update Username</button>
         </form>
 
-        <!-- Change Password Form (Initially Hidden) -->
         <form method="POST" id="passwordForm" style="display: none;">
             <h3 class="font-semibold text-gray-700 mb-2">Change Password</h3>
             <div class="mb-4">
