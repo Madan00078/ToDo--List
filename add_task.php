@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_task'])) {
     $due_date = $_POST['due_date'] ?? '';
     $user_id = $_SESSION['user_id'];
 
-    // Validation
     if (empty($title)) {
         $errors[] = 'Title is required';
     }
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_task'])) {
         $errors[] = 'Valid due date and time is required';
     }
 
-    // If no errors, save to database
     if (empty($errors)) {
         try {
             $stmt = $conn->prepare("
