@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm = $_POST['confirm_password'];
     $user_id = $_SESSION['user_id'];
 
-    // Fetch user's current hashed password
     $stmt = $conn->prepare("SELECT password FROM users WHERE id = :id");
     $stmt->bindParam(':id', $user_id);
     $stmt->execute();
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($new !== $confirm) {
         $errors[] = "New passwords do not match.";
     } else {
-        // Update password
+
         $hashed = password_hash($new, PASSWORD_DEFAULT);
         $update = $conn->prepare("UPDATE users SET password = :pass WHERE id = :id");
         $update->bindParam(':pass', $hashed);
