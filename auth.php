@@ -2,7 +2,6 @@
 session_start();
 require 'db.php';
 
-// Signup
 if (isset($_POST['signup'])) {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -16,7 +15,6 @@ if (isset($_POST['signup'])) {
     header("Location: index.php");
 }
 
-// Login
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
